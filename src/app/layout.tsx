@@ -21,25 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
   description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
-  authors: [{ name: "Cosmos Innovation R&D" }],
-  openGraph: {
-    title: "Cosmos Innovation R&D",
-    description: "Kelajakni bugun yaratamiz — ilg'or texnologiyalar va innovatsion yechimlar",
-    type: "website",
-    images: [
-      {
-        url: "https://lovable.dev/opengraph-image-p98pqg.png",
-        width: 1200,
-        height: 630,
-        alt: "Cosmos Innovation R&D",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@CosmosRD",
-    images: ["https://lovable.dev/opengraph-image-p98pqg.png"],
-  },
+  authors: [{ name: "Cosmos Innovation R&D" }]
 };
 
 export default function RootLayout({
