@@ -111,7 +111,7 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -130,7 +130,7 @@ const ProjectsSection = () => {
               </motion.span>
             </Button>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

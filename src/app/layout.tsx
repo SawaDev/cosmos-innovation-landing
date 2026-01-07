@@ -21,7 +21,13 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
   description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
-  authors: [{ name: "Cosmos Innovation R&D" }]
+  authors: [{ name: "Cosmos Innovation R&D" }],
+  openGraph: {
+    title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
+    description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
+    url: "https://landing.cosmos-rnd.uz",
+    siteName: "Cosmos Innovation R&D",
+  },
 };
 
 export default function RootLayout({
