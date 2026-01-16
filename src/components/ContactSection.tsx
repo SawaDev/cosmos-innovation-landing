@@ -12,17 +12,19 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Manzil",
-    value: "Toshkent sh., Amir Temur ko'chasi, 108",
+    value: "Toshkent sh., Amir Temur ko'chasi, 108", //TODO
   },
   {
     icon: Phone,
     label: "Telefon",
-    value: "+998 71 123 45 67",
+    value: "+998 71 123 45 67", //TODO
+    url: "tel:+998711234567",
   },
   {
     icon: Mail,
     label: "Email",
     value: "info@cosmos-rd.uz",
+    url: "mailto:info@cosmos-rd.uz",
   },
 ];
 
@@ -92,8 +94,23 @@ const ContactSection = () => {
                     <info.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <span className="text-muted-foreground text-sm block mb-1">{info.label}</span>
-                    <span className="text-foreground font-medium">{info.value}</span>
+                    <span className="text-muted-foreground text-sm block mb-1">
+                      {info.label}
+                    </span>
+                    {!!info.url ? (
+                      <a
+                        href={info.url || ""}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground font-medium"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <span className="text-foreground font-medium">
+                        {info.value}
+                      </span>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -102,7 +119,9 @@ const ContactSection = () => {
             {/* Map placeholder */}
             <div className="mt-10 h-48 rounded-xl glass-card overflow-hidden">
               <div className="w-full h-full bg-muted/50 flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Xarita joylashadi</span>
+                <span className="text-muted-foreground text-sm">
+                  Xarita joylashadi
+                </span>
               </div>
             </div>
           </motion.div>
@@ -120,33 +139,50 @@ const ContactSection = () => {
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="text-sm text-muted-foreground mb-2 block">Ismingiz</label>
+                  <label className="text-sm text-muted-foreground mb-2 block">
+                    Ismingiz
+                  </label>
                   <Input
                     placeholder="Ismingizni kiriting"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-sm text-muted-foreground mb-2 block">Email yoki Telefon</label>
+                  <label className="text-sm text-muted-foreground mb-2 block">
+                    Email yoki Telefon
+                  </label>
                   <Input
                     placeholder="Email yoki telefon raqamingiz"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     required
                   />
                 </div>
                 <div>
-                  <label className="text-sm text-muted-foreground mb-2 block">Xabaringiz</label>
+                  <label className="text-sm text-muted-foreground mb-2 block">
+                    Xabaringiz
+                  </label>
                   <Textarea
                     placeholder="Xabaringizni yozing..."
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     required
                   />
                 </div>
-                <Button type="submit" variant="hero" size="lg" className="w-full">
+                <Button
+                  type="submit"
+                  variant="hero"
+                  size="lg"
+                  className="w-full"
+                >
                   Yuborish
                   <Send className="w-4 h-4 ml-2" />
                 </Button>

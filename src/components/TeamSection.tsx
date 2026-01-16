@@ -1,31 +1,34 @@
 "use client";
 
-import { useMembers, Member } from "@/hooks/use-members";
+import { members, Member } from "../../constants/members";
 import { motion } from "framer-motion";
-import { 
-  Linkedin, 
-  Github, 
-  Twitter, 
-  Instagram, 
-  Facebook, 
-  Youtube, 
-  Globe, 
-  Mail, 
-  Send 
+import {
+  Linkedin,
+  Github,
+  Twitter,
+  Instagram,
+  Youtube,
+  Globe,
+  Mail,
+  Send,
 } from "lucide-react";
+import Image from "next/image";
 
 const getSocialLinks = (member: Member) => {
   const links = [];
-  if (member.linkedin_url) links.push({ icon: Linkedin, url: member.linkedin_url });
+  if (member.linkedin_url)
+    links.push({ icon: Linkedin, url: member.linkedin_url });
   if (member.github_url) links.push({ icon: Github, url: member.github_url });
-  if (member.twitter_url) links.push({ icon: Twitter, url: member.twitter_url });
-  if (member.instagram_url) links.push({ icon: Instagram, url: member.instagram_url });
-  if (member.facebook_url) links.push({ icon: Facebook, url: member.facebook_url });
-  if (member.youtube_url) links.push({ icon: Youtube, url: member.youtube_url });
+  if (member.twitter_url)
+    links.push({ icon: Twitter, url: member.twitter_url });
+  if (member.instagram_url)
+    links.push({ icon: Instagram, url: member.instagram_url });
+  if (member.youtube_url)
+    links.push({ icon: Youtube, url: member.youtube_url });
   if (member.website_url) links.push({ icon: Globe, url: member.website_url });
   if (member.email) links.push({ icon: Mail, url: `mailto:${member.email}` });
   if (member.telegram_url) links.push({ icon: Send, url: member.telegram_url });
-  
+
   return links;
 };
 
@@ -43,17 +46,17 @@ const TeamMemberSkeleton = () => (
 );
 
 const TeamSection = () => {
-  const { data: members, isLoading, error } = useMembers();
-
-  if (error) return null;
-
   return (
-    <section id="team" className="section-padding relative overflow-hidden bg-muted/30">
+    <section
+      id="team"
+      className="section-padding relative overflow-hidden bg-muted/30"
+    >
       {/* Animated background elements */}
       <motion.div
         className="absolute top-20 left-10 w-32 h-32 rounded-full"
         style={{
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 70%)",
         }}
         animate={{
           y: [0, -20, 0],
@@ -64,7 +67,8 @@ const TeamSection = () => {
       <motion.div
         className="absolute bottom-20 right-10 w-40 h-40 rounded-full"
         style={{
-          background: "radial-gradient(circle, hsl(var(--accent) / 0.08) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, hsl(var(--accent) / 0.08) 0%, transparent 70%)",
         }}
         animate={{
           y: [0, 20, 0],
@@ -93,12 +97,9 @@ const TeamSection = () => {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {isLoading ? (
-            Array.from({ length: 4 }).map((_, i) => (
-              <TeamMemberSkeleton key={i} />
-            ))
-          ) : (
-            members?.map((member, index) => (
+          {members
+            .sort((a, b) => a.order - b.order)
+            .map((member, index) => (
               <motion.div
                 key={member.name}
                 initial={{ opacity: 0, y: 30 }}
@@ -112,11 +113,12 @@ const TeamSection = () => {
                 <motion.div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    background: "radial-gradient(circle at 50% 30%, hsl(var(--primary) / 0.1) 0%, transparent 60%)",
+                    background:
+                      "radial-gradient(circle at 50% 30%, hsl(var(--primary) / 0.1) 0%, transparent 60%)",
                   }}
                 />
-                
-                <motion.div 
+
+                <motion.div
                   className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -124,24 +126,33 @@ const TeamSection = () => {
                   <motion.div
                     className="absolute inset-0 rounded-full"
                     style={{
-                      background: "conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary)), hsl(var(--primary)))",
+                      background:
+                        "conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary)), hsl(var(--primary)))",
                       padding: "4px",
                     }}
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                   <div className="absolute inset-1 rounded-full overflow-hidden bg-card">
-                    <img
-                      src={member.photo_url}
+                    <Image
+                      src={member.image || ""}
                       alt={member.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                 </motion.div>
-                
-                <h3 className="font-display text-lg font-semibold mb-1 relative z-10">{member.name}</h3>
-                <p className="text-secondary text-sm font-medium mb-4 relative z-10">{member.role}</p>
-                
+
+                <h3 className="font-display text-lg font-semibold mb-1 relative z-10">
+                  {member.name}
+                </h3>
+                <p className="text-secondary text-sm font-medium mb-4 relative z-10">
+                  {member.role}
+                </p>
+
                 <div className="flex justify-center gap-3 relative z-10 flex-wrap">
                   {getSocialLinks(member).map((link, i) => (
                     <motion.a
@@ -158,8 +169,7 @@ const TeamSection = () => {
                   ))}
                 </div>
               </motion.div>
-            ))
-          )}
+            ))}
         </div>
       </div>
     </section>

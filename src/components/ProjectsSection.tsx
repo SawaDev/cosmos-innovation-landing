@@ -3,27 +3,8 @@
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { rewards } from "../../constants/rewards";
 
-const projects = [
-  {
-    title: "Smart City Platform",
-    category: "IoT & Big Data",
-    description: "Shahar infratuzilmasini real vaqtda kuzatish va boshqarish platformasi.",
-    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&h=400&fit=crop",
-  },
-  {
-    title: "AI Healthcare Assistant",
-    category: "Sun'iy Intellekt",
-    description: "Tibbiy diagnostika va tahlil uchun sun'iy intellekt yordamchisi.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
-  },
-  {
-    title: "FinTech Solution",
-    category: "Moliyaviy Texnologiyalar",
-    description: "Zamonaviy to'lov tizimlari va moliyaviy xizmatlar platformasi.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-  },
-];
 
 const ProjectsSection = () => {
   return (
@@ -66,31 +47,31 @@ const ProjectsSection = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {rewards.map((reward, index) => (
             <motion.div
-              key={project.title}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
               whileHover={{ y: -10 }}
-              className="glass-card overflow-hidden group cursor-pointer"
+              className="glass-card overflow-hidden group"
             >
               <div className="relative overflow-hidden">
                 <motion.img
-                  src={project.image}
-                  alt={project.title}
+                  src={reward.image?.src || ""}
+                  alt={reward.title}
                   className="w-full h-48 object-cover"
                   whileHover={{ scale: 1.15 }}
                   transition={{ duration: 0.6 }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-card via-card/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                 
-                <motion.div 
+                {/* <motion.div 
                   className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110"
                 >
                   <ArrowUpRight className="w-5 h-5 text-primary-foreground" />
-                </motion.div>
+                </motion.div> */}
               </div>
 
               <div className="p-6 relative">
@@ -98,13 +79,13 @@ const ProjectsSection = () => {
                   className="absolute inset-0 bg-linear-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
                 <span className="text-secondary text-xs font-display tracking-wider uppercase relative z-10">
-                  {project.category}
+                  {reward.category}
                 </span>
                 <h3 className="font-display text-xl font-semibold mt-2 mb-3 group-hover:text-primary transition-colors duration-300 relative z-10">
-                  {project.title}
+                  {reward.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed relative z-10">
-                  {project.description}
+                  {reward.description}
                 </p>
               </div>
             </motion.div>

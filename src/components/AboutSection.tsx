@@ -11,7 +11,7 @@ const features = [
   },
   {
     icon: Lightbulb,
-    title: "Viziyamiz",
+    title: "Maqsadimiz",
     description: "Ilm-fan va texnologiya sohasida jahon standartlariga mos keladigan tadqiqot markazi bo'lish.",
   },
   {
