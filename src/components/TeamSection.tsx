@@ -1,7 +1,9 @@
 "use client";
 
+// import { useState } from "react";
 import { members, Member } from "../../constants/members";
 import { motion } from "framer-motion";
+// import { AnimatePresence } from "framer-motion";
 import {
   Linkedin,
   Github,
@@ -13,10 +15,11 @@ import {
   Send,
   ChevronLeft,
   ChevronRight,
+  // X,
 } from "lucide-react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, Mousewheel } from "swiper/modules";
 import { Button } from "@/components/ui/button";
 
 const getSocialLinks = (member: Member) => {
@@ -51,6 +54,12 @@ const TeamMemberSkeleton = () => (
 );
 
 const TeamSection = () => {
+  // const [expandedMember, setExpandedMember] = useState<string | null>(null);
+
+  // const handleMemberClick = (memberName: string) => {
+  //   setExpandedMember(expandedMember === memberName ? null : memberName);
+  // };
+
   return (
     <section
       id="team"
@@ -103,10 +112,15 @@ const TeamSection = () => {
 
         <div className="relative group pt-12 overflow-visible">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
+            modules={[Navigation, Pagination, Autoplay, Mousewheel]}
             spaceBetween={20}
             slidesPerView={1.2}
             centeredSlides={false}
+            mousewheel={{
+              forceToAxis: true,
+              sensitivity: 1,
+              releaseOnEdges: true,
+            }}
             navigation={{
               prevEl: ".swiper-button-prev-team",
               nextEl: ".swiper-button-next-team",
@@ -141,6 +155,7 @@ const TeamSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ y: -10 }}
+                    // onClick={() => handleMemberClick(member.name)}
                     className="glass-card p-6 text-center group hover:border-primary/50 transition-all duration-500 relative overflow-hidden h-full"
                   >
                     {/* Hover background glow */}
@@ -195,7 +210,40 @@ const TeamSection = () => {
                       {member.role}
                     </p>
 
-                    <div className="flex justify-center gap-3 relative z-10 flex-wrap">
+                    {/* <AnimatePresence>
+                      {expandedMember === member.name && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative z-10 overflow-hidden"
+                        >
+                          <div className="pt-4 border-t border-border/50 mt-4">
+                            <p className="text-muted-foreground text-sm leading-relaxed text-left">
+                              {member.description}
+                            </p>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="mt-4 w-full"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setExpandedMember(null);
+                              }}
+                            >
+                              <X className="w-4 h-4 mr-2" />
+                              Yopish
+                            </Button>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence> */}
+
+                    <div 
+                      className="flex justify-center gap-3 relative z-10 flex-wrap"
+                      // onClick={(e) => e.stopPropagation()}
+                    >
                       {getSocialLinks(member).map((link, i) => (
                         <motion.a
                           key={i}

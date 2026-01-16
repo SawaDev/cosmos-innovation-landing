@@ -19,14 +19,52 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
+  metadataBase: new URL("https://landing.cosmos-rnd.uz"),
+  title: {
+    default: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
+    template: "%s | Cosmos Innovation R&D",
+  },
   description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
+  keywords: ["R&D", "Innovation", "Technology", "AI", "IoT", "Uzbekistan", "Research", "Development", "Cosmos Innovation"],
   authors: [{ name: "Cosmos Innovation R&D" }],
+  creator: "Cosmos Innovation R&D",
+  publisher: "Cosmos Innovation R&D",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
-    description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
+    type: "website",
+    locale: "uz_UZ",
     url: "https://landing.cosmos-rnd.uz",
     siteName: "Cosmos Innovation R&D",
+    title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
+    description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cosmos Innovation R&D",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cosmos Innovation R&D | Ilg'or Texnologiyalar",
+    description: "Cosmos Innovation R&D — ilg'or texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazi",
+    images: ["/images/og-image.jpg"],
+    creator: "@cosmosinnovation",
+  },
+  alternates: {
+    canonical: "https://landing.cosmos-rnd.uz",
   },
 };
 

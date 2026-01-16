@@ -5,7 +5,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { rewards } from "../../constants/rewards";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, Mousewheel } from "swiper/modules";
 
 const ProjectsSection = () => {
   return (
@@ -50,10 +50,15 @@ const ProjectsSection = () => {
 
         <div className="relative group pt-12 overflow-visible">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
+            modules={[Navigation, Pagination, Autoplay, Mousewheel]}
             spaceBetween={20}
             slidesPerView={1.2}
             centeredSlides={false}
+            mousewheel={{
+              forceToAxis: true,
+              sensitivity: 1,
+              releaseOnEdges: true,
+            }}
             navigation={{
               prevEl: ".swiper-button-prev-custom",
               nextEl: ".swiper-button-next-custom",
