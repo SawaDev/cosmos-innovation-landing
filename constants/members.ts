@@ -6,6 +6,7 @@ import member4 from "../public/images/members/member_4.jpeg";
 import member5 from "../public/images/members/member_5.jpeg";
 import member6 from "../public/images/members/member_6.jpeg";
 import member7 from "../public/images/members/member_7.jpeg";
+import member8 from "../public/images/members/member_8.jpeg";
 
 export interface Member {
   name: string;
@@ -40,6 +41,7 @@ export const members: Member[] = [
     role: "CTO",
     description:
       "Body Tester startupining asoschilaridan biri va dasturchisi. 7 yildan beri robototexnika bilan shug‘ullanib, software va hardware loyihalarni amalga oshiradi hamda dasturiy yechimlar yaratishda faol ishtirok etadi.",
+    image: member8,
     order: 1.5,
     instagram_url: "https://www.instagram.com/sh.abdirakhmonov/",
     telegram_url: "https://t.me/sh_abdirakhmonov",

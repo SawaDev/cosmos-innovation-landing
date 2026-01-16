@@ -17,10 +17,15 @@ const footerLinks = {
     { label: "Maxfiylik siyosati", href: "#" },
   ],
   social: [
-    { label: "LinkedIn", href: "#" },
-    { label: "GitHub", href: "#" },
-    { label: "Twitter", href: "#" },
-    { label: "Telegram", href: "#" },
+    { label: "Telegram", href: "https://t.me/innovator_hayoti" },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/cosmos_innovation?igsh=emZ3NXJ2eHJxaW15",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/cosmos-innovation-uz/",
+    },
   ],
 };
 
@@ -83,7 +88,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Resources Links */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -103,7 +108,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.div> */}
 
           {/* Social Links */}
           <motion.div
@@ -120,6 +125,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    target="_blank"
                     className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm inline-flex items-center gap-1 group"
                   >
                     {link.label}

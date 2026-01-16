@@ -6,20 +6,21 @@ import { Send, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 const contactInfo = [
   {
     icon: MapPin,
     label: "Manzil",
-    value: "Toshkent sh., Amir Temur ko'chasi, 108", //TODO
+    value: "Turin Politexnika Universiteti",
+    url: "https://www.google.com/maps?q=41.3519842,69.2208173",
   },
-  {
-    icon: Phone,
-    label: "Telefon",
-    value: "+998 71 123 45 67", //TODO
-    url: "tel:+998711234567",
-  },
+  // {
+  //   icon: Phone,
+  //   label: "Telefon",
+  //   value: "+998 71 123 45 67",
+  //   url: "tel:+998711234567",
+  // },
   {
     icon: Mail,
     label: "Email",
@@ -35,13 +36,43 @@ const ContactSection = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-      title: "Xabar yuborildi!",
-      description: "Tez orada siz bilan bog'lanamiz.",
-    });
-    setFormData({ name: "", email: "", message: "" });
+    
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      
+      const response = await fetch("https://formspree.io/f/xaqqqnzq", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast.success("Xabar yuborildi!", {
+          description: "Tez orada siz bilan bog'lanamiz.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          toast.error("Xatolik yuz berdi", {
+            description: data.errors.map((error: any) => error.message).join(", "),
+          });
+        } else {
+          toast.error("Xatolik yuz berdi", {
+            description: "Xabarni yuborishda muammo bo'ldi. Iltimos, qayta urinib ko'ring.",
+          });
+        }
+      }
+    } catch (error) {
+      toast.error("Xatolik yuz berdi", {
+        description: "Xabarni yuborishda muammo bo'ldi. Iltimos, qayta urinib ko'ring.",
+      });
+    }
   };
 
   return (
@@ -116,13 +147,21 @@ const ContactSection = () => {
               ))}
             </div>
 
-            {/* Map placeholder */}
-            <div className="mt-10 h-48 rounded-xl glass-card overflow-hidden">
-              <div className="w-full h-full bg-muted/50 flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">
-                  Xarita joylashadi
-                </span>
-              </div>
+            {/* Map */}
+            <div className="mt-10 h-64 rounded-xl glass-card overflow-hidden">
+              <iframe
+                src="https://maps.google.com/maps?q=41.3519842,69.2208173&z=15&output=embed"
+                width="100%"
+                height="100%"
+                style={{
+                  border: 0,
+                  filter: "grayscale(1) invert(0.9) contrast(1.2)",
+                }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Google Maps"
+              ></iframe>
             </div>
           </motion.div>
 
@@ -137,12 +176,19 @@ const ContactSection = () => {
               <h3 className="font-display text-2xl font-semibold mb-6">
                 Xabar Yuboring
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                action="https://formspree.io/f/xaqqqnzq"
+                method="POST"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
                 <div>
                   <label className="text-sm text-muted-foreground mb-2 block">
                     Ismingiz
                   </label>
                   <Input
+                    type="text"
+                    name="name"
                     placeholder="Ismingizni kiriting"
                     value={formData.name}
                     onChange={(e) =>
@@ -156,6 +202,8 @@ const ContactSection = () => {
                     Email yoki Telefon
                   </label>
                   <Input
+                    type="email"
+                    name="email"
                     placeholder="Email yoki telefon raqamingiz"
                     value={formData.email}
                     onChange={(e) =>
@@ -169,6 +217,7 @@ const ContactSection = () => {
                     Xabaringiz
                   </label>
                   <Textarea
+                    name="message"
                     placeholder="Xabaringizni yozing..."
                     value={formData.message}
                     onChange={(e) =>

@@ -11,8 +11,13 @@ import {
   Globe,
   Mail,
   Send,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Button } from "@/components/ui/button";
 
 const getSocialLinks = (member: Member) => {
   const links = [];
@@ -77,7 +82,7 @@ const TeamSection = () => {
         transition={{ duration: 8, repeat: Infinity, delay: 2 }}
       />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 overflow-visible">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,80 +101,142 @@ const TeamSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {members
-            .sort((a, b) => a.order - b.order)
-            .map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                whileHover={{ y: -10 }}
-                className="glass-card p-6 text-center group hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
-              >
-                {/* Hover background glow */}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 50% 30%, hsl(var(--primary) / 0.1) 0%, transparent 60%)",
-                  }}
-                />
-
-                <motion.div
-                  className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {/* Animated ring */}
+        <div className="relative group pt-12 overflow-visible">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1.2}
+            centeredSlides={false}
+            navigation={{
+              prevEl: ".swiper-button-prev-team",
+              nextEl: ".swiper-button-next-team",
+            }}
+            pagination={{
+              clickable: true,
+              el: ".swiper-pagination-team",
+            }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2.2,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 4.2,
+                spaceBetween: 30,
+              },
+            }}
+            className="pb-16"
+          >
+            {members
+              .sort((a, b) => a.order - b.order)
+              .map((member, index) => (
+                <SwiperSlide key={member.name} className="pt-4 pb-4">
                   <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        "conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary)), hsl(var(--primary)))",
-                      padding: "4px",
-                    }}
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-                  <div className="absolute inset-1 rounded-full overflow-hidden bg-card">
-                    <Image
-                      src={member.image || ""}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    whileHover={{ y: -10 }}
+                    className="glass-card p-6 text-center group hover:border-primary/50 transition-all duration-500 relative overflow-hidden h-full"
+                  >
+                    {/* Hover background glow */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 50% 30%, hsl(var(--primary) / 0.1) 0%, transparent 60%)",
+                      }}
                     />
-                  </div>
-                </motion.div>
 
-                <h3 className="font-display text-lg font-semibold mb-1 relative z-10">
-                  {member.name}
-                </h3>
-                <p className="text-secondary text-sm font-medium mb-4 relative z-10">
-                  {member.role}
-                </p>
-
-                <div className="flex justify-center gap-3 relative z-10 flex-wrap">
-                  {getSocialLinks(member).map((link, i) => (
-                    <motion.a
-                      key={i}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                      whileHover={{ scale: 1.15, y: -3 }}
-                      whileTap={{ scale: 0.95 }}
+                    <motion.div
+                      className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden"
+                      whileHover={{ scale: 1.05 }}
                     >
-                      <link.icon className="w-4 h-4" />
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+                      {/* Animated ring */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background:
+                            "conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary)), hsl(var(--primary)))",
+                          padding: "4px",
+                        }}
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
+                      <div className="absolute inset-1 rounded-full overflow-hidden bg-card flex items-center justify-center">
+                        {member.image ? (
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            width={128}
+                            height={128}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-muted flex items-center justify-center">
+                            <span className="text-muted-foreground text-[10px]">No Photo</span>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+
+                    <h3 className="font-display text-lg font-semibold mb-1 relative z-10">
+                      {member.name}
+                    </h3>
+                    <p className="text-secondary text-sm font-medium mb-4 relative z-10">
+                      {member.role}
+                    </p>
+
+                    <div className="flex justify-center gap-3 relative z-10 flex-wrap">
+                      {getSocialLinks(member).map((link, i) => (
+                        <motion.a
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                          whileHover={{ scale: 1.15, y: -3 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <link.icon className="w-4 h-4" />
+                        </motion.a>
+                      ))}
+                    </div>
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+
+          {/* Custom Navigation */}
+          <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-20 swiper-button-prev-team">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary opacity-0 group-hover:opacity-100 transition-all duration-300 disabled:opacity-0"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </Button>
+          </div>
+          <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-20 swiper-button-next-team">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary opacity-0 group-hover:opacity-100 transition-all duration-300 disabled:opacity-0"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </Button>
+          </div>
+
+          {/* Custom Pagination */}
+          <div className="swiper-pagination-team flex justify-center gap-2 mt-8" />
         </div>
       </div>
     </section>
