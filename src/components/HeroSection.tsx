@@ -121,11 +121,11 @@ const HeroSection = () => {
               }}
               transition={{ duration: 4, repeat: Infinity }}
             >
-              Kelajakni
+              O'zbekistonni
             </motion.span>
             <br />
             <span className="inline-block bg-linear-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-shift bg-size-[200%_auto]">
-              Bugun Yaratamiz
+              rivojlantiramiz
             </span>
           </motion.h1>
 
@@ -139,8 +139,7 @@ const HeroSection = () => {
             <span className="text-foreground/90 font-medium">
               Cosmos Innovation R&D
             </span>{" "}
-            — ilg'or texnologiyalar va innovatsion yechimlar yaratishga
-            ixtisoslashgan tadqiqot va ishlab chiqish markazi.
+            — Biz zamonaviy texnologiyalar va innovatsion yechimlar yaratishga ixtisoslashgan tadqiqot va ishlab chiqish markazimiz. Jamomiz ilg'or texnologiyalar sohasida chuqur tajribaga ega yosh mutaxassislardan iborat.
           </motion.p>
 
           {/* CTA Buttons with glow animation */}

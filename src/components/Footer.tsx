@@ -55,7 +55,7 @@ const Footer = () => {
                 </span>
               </div>
               <span className="font-display font-bold text-xl tracking-wider">
-                COSMOS
+                COSMOS INNOVATION
               </span>
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">

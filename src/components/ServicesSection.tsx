@@ -1,38 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Cpu, Globe, Shield, Database, Zap } from "lucide-react";
+import { FlaskConical, Box, Wrench, Factory, Rocket, GraduationCap } from "lucide-react";
 
 const services = [
   {
-    icon: Brain,
-    title: "Sun'iy Intellekt",
-    description: "Machine Learning va Deep Learning yechimlarini ishlab chiqish va joriy etish.",
+    icon: FlaskConical,
+    title: "Tadqiqot va ilmiy izlanishlar",
+    description: "Yangi texnologiyalarni o'rganish va sinovdan o'tkazish, energiya, aerokosmik, robototexnika bo'yicha ilmiy tadqiqotlar, texnik yechimlarning ilmiy asosini yaratish.",
   },
   {
-    icon: Cpu,
-    title: "IoT Texnologiyalari",
-    description: "Smart qurilmalar va sensorlar tarmoqlarini loyihalash va ishlab chiqish.",
+    icon: Box,
+    title: "Mahsulot ishlab chiqish (Product Development)",
+    description: "Idea → prototip → MVP → pilot mahsulot, CAD/CAE dizayn (SolidWorks, NX ), Mexanik, elektron va embedded tizimlar dizayni, DFM/DFA (ishlab chiqarishga moslashtirish)",
   },
   {
-    icon: Globe,
-    title: "Web Platformalar",
-    description: "Zamonaviy va yuqori samarali web ilovalarni yaratish.",
+    icon: Wrench,
+    title: "Prototiplash va laboratoriya xizmatlari",
+    description: "3D printing (PLA, ABS, Nylon, Carbon), CNC frezalash va tokarlik, PCB dizayn va yig'ish, Sensorlar, IoT qurilmalarini yig'ish",
   },
   {
-    icon: Shield,
-    title: "Kiberxavfsizlik",
-    description: "Axborot xavfsizligi bo'yicha audit va yechimlar taqdim etish.",
+    icon: Factory,
+    title: "Sanoat va ishlab chiqarishga tayyorlash",
+    description: "Texnologik jarayonlarni ishlab chiqish, Pilot liniya va kichik seriyali ishlab chiqarish",
   },
   {
-    icon: Database,
-    title: "Big Data Analytics",
-    description: "Katta hajmdagi ma'lumotlarni tahlil qilish va vizualizatsiya qilish.",
+    icon: Rocket,
+    title: "Startap va innovatsiya qo'llab-quvvatlash",
+    description: "Hardware startaplar uchun tech-mentoring, Texnik due diligence (investorlar uchun), Grant va tanlovlarga tayyorlash",
   },
   {
-    icon: Zap,
-    title: "Avtomatlashtirish",
-    description: "Biznes jarayonlarni avtomatlashtirish va optimallashtirish.",
+    icon: GraduationCap,
+    title: "Ta'lim va kadrlar tayyorlash",
+    description: "Injiniring bootcamplar, Talabalar va yosh muhandislar uchun stajirovka, Korporativ treninglar, Universitet–sanoat hamkorligi",
   },
 ];
 

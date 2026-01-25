@@ -106,7 +106,7 @@ const TeamSection = () => {
             Bizning <span className="gradient-text">Mutaxassislar</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Professional va tajribali jamoa a'zolari bilan tanishing.
+            Tajribali jamoa a'zolarimiz bilan tanishing.
           </p>
         </motion.div>
 
@@ -240,9 +240,9 @@ const TeamSection = () => {
                       )}
                     </AnimatePresence> */}
 
-                    <div 
+                    <div
                       className="flex justify-center gap-3 relative z-10 flex-wrap"
-                      // onClick={(e) => e.stopPropagation()}
+                    // onClick={(e) => e.stopPropagation()}
                     >
                       {getSocialLinks(member).map((link, i) => (
                         <motion.a

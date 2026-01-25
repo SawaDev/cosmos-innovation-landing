@@ -47,7 +47,7 @@ const Navbar = () => {
               </span>
             </motion.div>
             <span className="font-display font-bold text-xl tracking-wider">
-              COSMOS
+              COSMOS INNOVATION
             </span>
           </motion.a>
 

@@ -41,10 +41,10 @@ const ProjectsSection = () => {
             Portfolio
           </motion.span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Tanlangan <span className="gradient-text">Loyihalar</span>
+            <span className="gradient-text">Natijalarimiz</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Bizning eng muhim va muvaffaqiyatli loyihalarimiz bilan tanishing.
+            Bizning eng muhim erishayotgan natijalarimiz.
           </p>
         </motion.div>
 
