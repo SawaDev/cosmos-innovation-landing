@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -32,7 +33,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.98 }}
           >
             <motion.div
-              className="w-10 h-10 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center"
+              className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden"
               animate={{
                 boxShadow: [
                   "0 0 0 0 hsl(var(--primary) / 0)",
@@ -42,9 +43,13 @@ const Navbar = () => {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <span className="font-display font-bold text-primary-foreground text-lg">
-                C
-              </span>
+              <Image
+                src="/logo.png"
+                alt="Cosmos Innovation Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
             </motion.div>
             <span className="font-display font-bold text-xl tracking-wider">
               COSMOS INNOVATION

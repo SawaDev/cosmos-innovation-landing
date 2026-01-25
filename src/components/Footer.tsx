@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = {
   company: [
@@ -49,10 +50,14 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <a href="#" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center">
-                <span className="font-display font-bold text-primary-foreground text-lg">
-                  C
-                </span>
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Cosmos Innovation Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </div>
               <span className="font-display font-bold text-xl tracking-wider">
                 COSMOS INNOVATION
